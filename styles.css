@@ -1,0 +1,285 @@
+/* Three columns: Keep's label sidebar | note list (middle) | open note (right).
+   Selectors mirror selectors.js (duplicated here because CSS can't import JS). */
+
+:root.keepy {
+  --keepy-sidebar: 280px;
+  --keepy-list: 340px;
+  --keepy-header: 64px;
+  --keepy-toolbar: 56px;
+  --keepy-select: rgba(253, 214, 99, 0.22);
+  --keepy-outline: rgba(128, 128, 128, 0.25);
+  --keepy-radius: 16px;
+}
+
+/* Toolbar: the "Take a note" box becomes the list's toolbar, pinned above the
+   scrolling list instead of scrolling away with it. */
+:root.keepy .RfDI4d-bN97Pc .h1U9Be-xhiy4 {
+  position: fixed !important;
+  top: calc(var(--keepy-header) + 8px) !important;
+  left: calc(var(--keepy-sidebar) + 8px) !important;
+  width: calc(var(--keepy-list) - 16px) !important; /* matches the cards: list width minus its 8px side padding */
+  min-height: 36px;
+  margin: 0 !important;
+  z-index: 5;
+  box-sizing: border-box;
+}
+:root.keepy .RfDI4d-bN97Pc .h1U9Be-xhiy4 > .IZ65Hb-n0tgWb.di8rgd-r4nke {
+  width: 100% !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+  border-radius: 0 !important;
+}
+
+/* Middle column: a list of lightly outlined, well-spaced notes that scrolls on
+   its own. Space, not shadows, separates the notes. */
+:root.keepy .RfDI4d-bN97Pc {
+  position: fixed !important;
+  top: var(--keepy-header) !important;
+  bottom: 0 !important;
+  left: var(--keepy-sidebar) !important;
+  /* 16px wider than the cards, so a classic scrollbar has its own strip and
+     never squeezes them */
+  width: calc(var(--keepy-list) + 16px) !important;
+  margin: 0 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  /* --keepy-composer-extra is how much taller the expanded "Take a note" box is
+     than the collapsed toolbar (set by content.js); it pushes the list down. */
+  padding: calc(var(--keepy-toolbar) + 12px + var(--keepy-composer-extra, 0px)) 0 12px 8px;
+  box-sizing: border-box;
+}
+:root.keepy .RfDI4d-bN97Pc .gkA7Yd-sKfxWe,
+:root.keepy .gkA7Yd-sKfxWe > div {
+  width: calc(var(--keepy-list) - 16px) !important;
+  margin: 0 !important; /* Keep centers the grid with auto margins */
+  height: auto !important;
+}
+:root.keepy .gkA7Yd-sKfxWe .IZ65Hb-n0tgWb.IZ65Hb-WsjYwc-nUpftc {
+  position: relative !important;
+  transform: none !important;
+  width: calc(var(--keepy-list) - 16px) !important;
+  margin: 0 0 8px !important;
+  overflow: hidden;
+  transition: none !important;
+  background: transparent !important;
+  border: 1px solid var(--keepy-outline) !important;
+  border-radius: var(--keepy-radius) !important;
+  box-shadow: none !important;
+}
+:root.keepy .gkA7Yd-sKfxWe .IZ65Hb-n0tgWb .IZ65Hb-TBnied {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Preview rows: one title line, up to two body lines, no media or toolbar. */
+:root.keepy .gkA7Yd-sKfxWe .IZ65Hb-YPqjbf {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 17px !important;
+  font-weight: 600;
+  line-height: 1.3 !important;
+  padding: 12px 44px 0 16px !important; /* right padding keeps long titles clear of the pin */
+}
+:root.keepy .gkA7Yd-sKfxWe .IZ65Hb-vIzZGf-bVEB4e-qJTHM {
+  font-size: 13px !important;
+  line-height: 1.4 !important;
+  max-height: 46px;
+  overflow: hidden;
+  padding: 2px 16px 12px !important;
+  opacity: 0.7;
+}
+/* Headings and bold runs inside a note body would out-shout the title. */
+:root.keepy .gkA7Yd-sKfxWe .IZ65Hb-vIzZGf-bVEB4e-qJTHM * {
+  font-size: 13px !important;
+  font-weight: normal !important;
+}
+/* The hover-only "Select note" check badge in the card's top-left corner. */
+:root.keepy .gkA7Yd-sKfxWe .IZ65Hb-n0tgWb > .IZ65Hb-NGme3c {
+  display: none !important;
+}
+:root.keepy .gkA7Yd-sKfxWe .IZ65Hb-qJTHM-haAclf {
+  max-height: none !important;
+  overflow: visible !important;
+}
+/* Section labels (Pinned / Others) are absolutely placed for the masonry grid
+   and land on top of rows in a list. */
+:root.keepy .neVct-LS81yb-tJHJj {
+  display: none !important;
+}
+:root.keepy .gkA7Yd-sKfxWe .IZ65Hb-hYUzqc,
+:root.keepy .gkA7Yd-sKfxWe .IZ65Hb-jfdpUb,
+:root.keepy .gkA7Yd-sKfxWe .IZ65Hb-nK2kYb {
+  display: none !important;
+}
+
+/* Keep fades the open note's card to opacity 0, which leaves a hole in the
+   list. Show it as the selected row instead. */
+:root.keepy .gkA7Yd-sKfxWe .IZ65Hb-n0tgWb.IZ65Hb-fbudBf {
+  opacity: 1 !important;
+  background: var(--keepy-select) !important;
+  border-color: transparent !important;
+}
+
+/* Right column: the editor is a plain pane, not a floating popup. No backdrop,
+   no box, no open/close animation. */
+:root.keepy .VIpgJd-TUo6Hb-xJ5Hnf {
+  background: transparent !important;
+  pointer-events: none !important;
+}
+/* Keep's editor popup sits at z-index 4000+, above its own top bar (986), so
+   the account menu and other top-bar menus open behind a note. Drop the editor
+   below the bar. */
+:root.keepy .VIpgJd-TUo6Hb.XKSfm-L9AdLc,
+:root.keepy .VIpgJd-TUo6Hb-xJ5Hnf {
+  z-index: 900 !important;
+}
+:root.keepy .VIpgJd-TUo6Hb.XKSfm-L9AdLc {
+  left: calc(var(--keepy-sidebar) + var(--keepy-list) + 24px) !important;
+  top: calc(var(--keepy-header) + 16px) !important;
+  right: 16px !important;
+  bottom: 0 !important;
+  width: auto !important;
+  max-width: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+:root.keepy .VIpgJd-TUo6Hb.XKSfm-L9AdLc,
+:root.keepy .VIpgJd-TUo6Hb.XKSfm-L9AdLc *,
+:root.keepy .VIpgJd-TUo6Hb-xJ5Hnf {
+  transition: none !important;
+  animation: none !important;
+}
+/* Note controls (formatting, color, archive, Close...) on top, not below. */
+:root.keepy .VIpgJd-TUo6Hb.XKSfm-L9AdLc .IZ65Hb-TBnied {
+  display: flex !important;
+  flex-direction: column !important;
+}
+:root.keepy .VIpgJd-TUo6Hb.XKSfm-L9AdLc .IZ65Hb-nK2kYb {
+  order: -1;
+}
+:root.keepy .VIpgJd-TUo6Hb.XKSfm-L9AdLc .IZ65Hb-n0tgWb,
+:root.keepy .VIpgJd-TUo6Hb.XKSfm-L9AdLc .IZ65Hb-TBnied {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+
+/* Right column placeholder while no note is open. */
+#keepy-empty {
+  display: none;
+}
+:root.keepy:not(.keepy-has-note) #keepy-empty {
+  display: flex;
+  position: fixed;
+  top: var(--keepy-header);
+  bottom: 0;
+  left: calc(var(--keepy-sidebar) + var(--keepy-list) + 24px);
+  right: 16px;
+  align-items: center;
+  justify-content: center;
+  font: 500 22px/1 "Google Sans", Roboto, sans-serif;
+  color: rgba(128, 128, 128, 0.7);
+  pointer-events: none;
+}
+
+/* Like Keep's own sidebar, the note list only shows a scrollbar while the
+   pointer is over it. */
+:root.keepy .RfDI4d-bN97Pc {
+  overflow-y: hidden !important;
+}
+:root.keepy .RfDI4d-bN97Pc:hover {
+  overflow-y: auto !important;
+}
+
+/* The note list is always a list, so Keep's list/grid toggle does nothing useful.
+   To get stock Keep back, turn the extension off from its toolbar button. */
+:root.keepy header [aria-label="List view"],
+:root.keepy header [aria-label="Grid view"] {
+  display: none !important;
+}
+
+/* The sidebar stays expanded; remove the collapse (hamburger) button and let
+   the Keep logo slide left into its place. */
+:root.keepy [aria-label="Main menu"] {
+  display: none !important;
+}
+/* Line the logo's bulb up with the icon column of the sidebar below it. */
+:root.keepy header a.gb_oe {
+  margin-left: 11px;
+}
+
+/* The Close button goes away; "Edited <date>" takes its place at the right end
+   of the controls row above the note. Escape still closes the note. */
+:root.keepy .VIpgJd-TUo6Hb.XKSfm-L9AdLc .IZ65Hb-nK2kYb .IZ65Hb-iib5kc.IZ65Hb-TvD9Pc {
+  display: none !important;
+}
+:root.keepy .VIpgJd-TUo6Hb.XKSfm-L9AdLc .IZ65Hb-TBnied,
+:root.keepy .VIpgJd-TUo6Hb.XKSfm-L9AdLc .IZ65Hb-s2gQvd {
+  overflow: visible !important;
+}
+:root.keepy .VIpgJd-TUo6Hb.XKSfm-L9AdLc .IZ65Hb-jfdpUb-fmcmS {
+  position: absolute;
+  top: -28px;
+  right: 12px;
+  white-space: nowrap;
+}
+
+/* The scroll container now spans the toolbar's height too, so the scrollbar
+   runs alongside it. This opaque band keeps scrolled notes from showing
+   through behind the fixed toolbar. */
+:root.keepy .RfDI4d-bN97Pc::before {
+  content: "";
+  position: fixed;
+  top: var(--keepy-header);
+  left: var(--keepy-sidebar);
+  width: var(--keepy-list);
+  height: calc(var(--keepy-toolbar) + var(--keepy-composer-extra, 0px));
+  background: inherit; /* the list column inherits the page color, see above */
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* Expanded "Take a note": the controls row is wider than the 324px box, so its
+   icons were cut off. Undo/redo move up beside the pin and the rest of the
+   row is sized to fit. */
+:root.keepy .RfDI4d-bN97Pc .h1U9Be-xhiy4 .IZ65Hb-nK2kYb,
+:root.keepy .RfDI4d-bN97Pc .h1U9Be-xhiy4 .IZ65Hb-INgbqf {
+  position: static !important; /* so undo/redo position against the note box */
+}
+:root.keepy .RfDI4d-bN97Pc .h1U9Be-xhiy4 .IZ65Hb-INgbqf {
+  width: auto !important;
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+:root.keepy .RfDI4d-bN97Pc .h1U9Be-xhiy4 [aria-label="Undo"],
+:root.keepy .RfDI4d-bN97Pc .h1U9Be-xhiy4 [aria-label="Redo"] {
+  position: absolute !important;
+  top: 6px;
+}
+:root.keepy .RfDI4d-bN97Pc .h1U9Be-xhiy4 [aria-label="Redo"] {
+  right: 56px;
+}
+:root.keepy .RfDI4d-bN97Pc .h1U9Be-xhiy4 [aria-label="Undo"] {
+  right: 90px;
+}
+
+/* Pinned notes always show their pin; Keep only reveals it on hover. Unpinned
+   notes still get the hover pin. */
+:root.keepy .gkA7Yd-sKfxWe .IZ65Hb-ma6Yeb-INgbqf:has([aria-pressed="true"]) {
+  opacity: 1 !important;
+}
+
+/* Give the list column the page's own background by passing it down from <body>
+   through the (zero-height) wrappers. CSS inheritance follows Keep's light/dark
+   theme on its own, so the toolbar band can never show a stale color. */
+:root.keepy .notes-container,
+:root.keepy .RfDI4d-Iu19ad,
+:root.keepy .RfDI4d-bN97Pc {
+  background-color: inherit !important;
+}
