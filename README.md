@@ -46,3 +46,7 @@ mkdir -p dist
 zip -X dist/keepy-notes-$(grep -o '"version": "[^"]*' manifest.json | cut -d'"' -f4).zip \
   manifest.json background.js content.js selectors.js styles.css icons/keepy.svg
 ```
+
+## License
+
+[MIT](LICENSE)
