@@ -6,7 +6,7 @@ Unofficial. Not affiliated with or endorsed by Google. Google Keep is a trademar
 
 ## What it does
 
-- Notes as a list with a title and a couple of preview lines; pinned notes always show their pin.
+- Notes as a list of titles (untitled notes show their first line); pinned notes always show their pin.
 - The open note docks in the right pane, with its controls on top and the edited date beside them.
 - "Take a note" becomes a toolbar above the list; the expanded box pushes the list down.
 - Up/Down arrow keys move through notes.
@@ -44,7 +44,7 @@ Keep uses generated class names (like `IZ65Hb-n0tgWb`) that can change whenever 
 ```bash
 mkdir -p dist
 zip -X dist/keepy-notes-$(grep -o '"version": "[^"]*' manifest.json | cut -d'"' -f4).zip \
-  manifest.json background.js content.js selectors.js styles.css icons/keepy.svg
+  manifest.json background.js content.js selectors.js styles.css icons/icon-*.png
 ```
 
 ## License

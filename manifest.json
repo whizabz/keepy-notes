@@ -1,32 +1,51 @@
 {
   "manifest_version": 3,
   "name": "Keepy Notes",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Turns Google Keep into a three-column, Apple Notes style layout.",
   "browser_specific_settings": {
     "gecko": {
       "id": "keepy-notes@local",
       "strict_min_version": "121.0",
-      "data_collection_permissions": { "required": ["none"] }
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
     }
   },
-  "permissions": ["storage"],
+  "permissions": [
+    "storage"
+  ],
   "background": {
-    "scripts": ["background.js"]
+    "scripts": [
+      "background.js"
+    ]
   },
   "action": {
     "default_title": "Keepy Notes: click to turn off",
-    "default_icon": "icons/keepy.svg"
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png"
+    }
   },
   "icons": {
-    "48": "icons/keepy.svg",
-    "96": "icons/keepy.svg"
+    "48": "icons/icon-48.png",
+    "96": "icons/icon-96.png",
+    "128": "icons/icon-128.png"
   },
   "content_scripts": [
     {
-      "matches": ["https://keep.google.com/*"],
-      "css": ["styles.css"],
-      "js": ["selectors.js", "content.js"],
+      "matches": [
+        "https://keep.google.com/*"
+      ],
+      "css": [
+        "styles.css"
+      ],
+      "js": [
+        "selectors.js",
+        "content.js"
+      ],
       "run_at": "document_idle"
     }
   ]

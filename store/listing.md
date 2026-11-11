@@ -12,7 +12,7 @@ Turns Google Keep into a three-column notes app: your labels, a scrolling list o
 Keepy Notes changes how Google Keep looks on keep.google.com. Instead of a grid of cards with a pop-up editor, you get a three-column layout:
 
 - Left: Keep's own label sidebar, kept open.
-- Middle: your notes as a scrolling list, each showing a title and a couple of lines of preview. Pinned notes always show their pin.
+- Middle: your notes as a scrolling list, each showing just its title (untitled notes show their first line). Pinned notes always show their pin.
 - Right: the open note, with its controls along the top. "No Note Selected" shows when nothing is open.
 
 Also included:

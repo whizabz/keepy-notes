@@ -73,7 +73,8 @@
   box-shadow: none !important;
 }
 
-/* Preview rows: one title line, up to two body lines, no media or toolbar. */
+/* Rows show the note's title only: one line, no body preview, media or toolbar.
+   A note with no title falls back to its first lines so the row is never blank. */
 :root.keepy .gkA7Yd-sKfxWe .IZ65Hb-YPqjbf {
   white-space: nowrap;
   overflow: hidden;
@@ -81,7 +82,7 @@
   font-size: 17px !important;
   font-weight: 600;
   line-height: 1.3 !important;
-  padding: 12px 44px 0 16px !important; /* right padding keeps long titles clear of the pin */
+  padding: 12px 44px 12px 16px !important; /* right padding keeps long titles clear of the pin */
 }
 :root.keepy .gkA7Yd-sKfxWe .IZ65Hb-vIzZGf-bVEB4e-qJTHM {
   font-size: 13px !important;
@@ -103,6 +104,19 @@
 :root.keepy .gkA7Yd-sKfxWe .IZ65Hb-qJTHM-haAclf {
   max-height: none !important;
   overflow: visible !important;
+  display: none !important; /* hide the body preview... */
+}
+/* ...unless the note has no title, in which case the body is the row's label. */
+:root.keepy .gkA7Yd-sKfxWe .IZ65Hb-n0tgWb:not(:has(.IZ65Hb-r4nke-haAclf .IZ65Hb-YPqjbf:not(:empty))) .IZ65Hb-qJTHM-haAclf {
+  display: block !important;
+}
+:root.keepy .gkA7Yd-sKfxWe .IZ65Hb-n0tgWb:not(:has(.IZ65Hb-r4nke-haAclf .IZ65Hb-YPqjbf:not(:empty))) .IZ65Hb-vIzZGf-bVEB4e-qJTHM {
+  padding: 12px 44px 12px 16px !important;
+  opacity: 1;
+  max-height: 2.8em;
+}
+:root.keepy .gkA7Yd-sKfxWe .IZ65Hb-n0tgWb:not(:has(.IZ65Hb-r4nke-haAclf .IZ65Hb-YPqjbf:not(:empty))) .IZ65Hb-vIzZGf-bVEB4e-qJTHM * {
+  font-size: 15px !important;
 }
 /* Section labels (Pinned / Others) are absolutely placed for the masonry grid
    and land on top of rows in a list. */
