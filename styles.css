@@ -20,7 +20,7 @@
   width: calc(var(--keepy-list) - 16px) !important; /* matches the cards: list width minus its 8px side padding */
   min-height: 36px;
   margin: 0 !important;
-  z-index: 5;
+  z-index: 100; /* above the cards' pin buttons, below the editor (900) */
   box-sizing: border-box;
 }
 :root.keepy .RfDI4d-bN97Pc .h1U9Be-xhiy4 > .IZ65Hb-n0tgWb.di8rgd-r4nke {
