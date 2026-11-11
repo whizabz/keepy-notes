@@ -101,22 +101,26 @@
 :root.keepy .gkA7Yd-sKfxWe .IZ65Hb-n0tgWb > .IZ65Hb-NGme3c {
   display: none !important;
 }
-:root.keepy .gkA7Yd-sKfxWe .IZ65Hb-qJTHM-haAclf {
+:root.keepy:not(.keepy-previews) .gkA7Yd-sKfxWe .IZ65Hb-qJTHM-haAclf {
   max-height: none !important;
   overflow: visible !important;
-  display: none !important; /* hide the body preview... */
+  display: none !important; /* titles only (default): hide the body preview... */
 }
 /* ...unless the note has no title, in which case the body is the row's label. */
-:root.keepy .gkA7Yd-sKfxWe .IZ65Hb-n0tgWb:not(:has(.IZ65Hb-r4nke-haAclf .IZ65Hb-YPqjbf:not(:empty))) .IZ65Hb-qJTHM-haAclf {
+:root.keepy:not(.keepy-previews) .gkA7Yd-sKfxWe .IZ65Hb-n0tgWb:not(:has(.IZ65Hb-r4nke-haAclf .IZ65Hb-YPqjbf:not(:empty))) .IZ65Hb-qJTHM-haAclf {
   display: block !important;
 }
-:root.keepy .gkA7Yd-sKfxWe .IZ65Hb-n0tgWb:not(:has(.IZ65Hb-r4nke-haAclf .IZ65Hb-YPqjbf:not(:empty))) .IZ65Hb-vIzZGf-bVEB4e-qJTHM {
+:root.keepy:not(.keepy-previews) .gkA7Yd-sKfxWe .IZ65Hb-n0tgWb:not(:has(.IZ65Hb-r4nke-haAclf .IZ65Hb-YPqjbf:not(:empty))) .IZ65Hb-vIzZGf-bVEB4e-qJTHM {
   padding: 12px 44px 12px 16px !important;
   opacity: 1;
   max-height: 2.8em;
 }
-:root.keepy .gkA7Yd-sKfxWe .IZ65Hb-n0tgWb:not(:has(.IZ65Hb-r4nke-haAclf .IZ65Hb-YPqjbf:not(:empty))) .IZ65Hb-vIzZGf-bVEB4e-qJTHM * {
+:root.keepy:not(.keepy-previews) .gkA7Yd-sKfxWe .IZ65Hb-n0tgWb:not(:has(.IZ65Hb-r4nke-haAclf .IZ65Hb-YPqjbf:not(:empty))) .IZ65Hb-vIzZGf-bVEB4e-qJTHM * {
   font-size: 15px !important;
+}
+/* With previews on, the title sits tight against the body text below it. */
+:root.keepy.keepy-previews .gkA7Yd-sKfxWe .IZ65Hb-YPqjbf {
+  padding-bottom: 0 !important;
 }
 /* Section labels (Pinned / Others) are absolutely placed for the masonry grid
    and land on top of rows in a list. */

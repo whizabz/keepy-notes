@@ -179,8 +179,16 @@
     }
   };
 
-  browser.storage.local.get({ enabled: true }).then((v) => setEnabled(v.enabled));
+  // Options page: show a body preview under each title in the list (off by default).
+  const setPreviews = (on) => root.classList.toggle('keepy-previews', !!on);
+
+  browser.storage.local.get({ enabled: true, showPreview: false }).then((v) => {
+    setPreviews(v.showPreview);
+    setEnabled(v.enabled);
+  });
   browser.storage.onChanged.addListener((changes, area) => {
-    if (area === 'local' && changes.enabled) setEnabled(changes.enabled.newValue);
+    if (area !== 'local') return;
+    if (changes.showPreview) setPreviews(changes.showPreview.newValue);
+    if (changes.enabled) setEnabled(changes.enabled.newValue);
   });
 })();

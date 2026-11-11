@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Keepy Notes settings</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body { font: 15px/1.5 system-ui, sans-serif; max-width: 560px; margin: 32px auto; padding: 0 16px; }
+    h1 { font-size: 22px; font-weight: 600; margin: 0 0 20px; }
+    label { display: flex; gap: 12px; align-items: flex-start; cursor: pointer; }
+    input { margin-top: 4px; width: 16px; height: 16px; }
+    .hint { color: GrayText; font-size: 13px; margin-top: 2px; }
+    #saved { margin-top: 16px; height: 1.5em; font-size: 13px; color: GrayText; }
+  </style>
+</head>
+<body>
+  <h1>Keepy Notes</h1>
+  <label>
+    <input type="checkbox" id="showPreview">
+    <span>
+      Show a preview of each note's content in the list
+      <div class="hint">Off: the list shows titles only. On: each row also shows a couple of lines of the note. Notes without a title always show their first lines.</div>
+    </span>
+  </label>
+  <div id="saved" role="status"></div>
+  <script src="options.js"></script>
+</body>
+</html>

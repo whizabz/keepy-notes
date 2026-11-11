@@ -12,7 +12,7 @@ Turns Google Keep into a three-column notes app: your labels, a scrolling list o
 Keepy Notes changes how Google Keep looks on keep.google.com. Instead of a grid of cards with a pop-up editor, you get a three-column layout:
 
 - Left: Keep's own label sidebar, kept open.
-- Middle: your notes as a scrolling list, each showing just its title (untitled notes show their first line). Pinned notes always show their pin.
+- Middle: your notes as a scrolling list, each showing just its title (untitled notes show their first line), with an option in settings to also show a short preview. Pinned notes always show their pin.
 - Right: the open note, with its controls along the top. "No Note Selected" shows when nothing is open.
 
 Also included:
@@ -36,13 +36,13 @@ Support email or site: (your choice; AMO asks for one)
 Pick one in the form. MIT is a common choice for a small add-on like this.
 
 ## Privacy policy
-Not required, since the add-on collects no data (the manifest declares data_collection_permissions: none). If you want one, a single sentence is enough: "Keepy Notes collects no personal data and sends nothing off your device. It stores one setting, on or off, in your browser."
+Not required, since the add-on collects no data (the manifest declares data_collection_permissions: none). If you want one, a single sentence is enough: "Keepy Notes collects no personal data and sends nothing off your device. It stores two settings, on or off and whether to show note previews, in your browser."
 
 ## Notes for the reviewer (the "Notes to Reviewer" field)
 - No build step, bundler, minification or third-party code. The uploaded files are the source.
-- Runs only on https://keep.google.com/*. Permission requested: storage (saves one boolean, "enabled").
+- Runs only on https://keep.google.com/*. Permission requested: storage (saves two booleans, "enabled" and "showPreview").
 - No network requests, no remote code, no innerHTML/eval. Text is inserted with textContent only.
-- The extension restyles the page with CSS gated on a class on <html>. The content script keeps that class in sync with the on/off setting, adds one placeholder element ("No Note Selected"), and handles Up/Down keys by dispatching click events on note cards.
+- The extension restyles the page with CSS gated on a class on <html>. The content script keeps that class in sync with the on/off setting (and a second class with the "show previews" option on the options page, options.html), adds one placeholder element ("No Note Selected"), and handles Up/Down keys by dispatching click events on note cards.
 - Keep's page uses generated class names. All of them are listed in selectors.js. If they stop matching, the extension disables itself and shows a dismissible banner.
 - Needs Firefox 121+ because the CSS uses :has().
 

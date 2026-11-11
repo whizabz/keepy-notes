@@ -6,7 +6,7 @@ Unofficial. Not affiliated with or endorsed by Google. Google Keep is a trademar
 
 ## What it does
 
-- Notes as a list of titles (untitled notes show their first line); pinned notes always show their pin.
+- Notes as a list of titles (untitled notes show their first line); pinned notes always show their pin. Optional: turn on content previews under each title in the add-on settings (Add-ons Manager → Keepy Notes → Options).
 - The open note docks in the right pane, with its controls on top and the edited date beside them.
 - "Take a note" becomes a toolbar above the list; the expanded box pushes the list down.
 - Up/Down arrow keys move through notes.

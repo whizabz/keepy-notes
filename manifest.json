@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Keepy Notes",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Turns Google Keep into a three-column, Apple Notes style layout.",
   "browser_specific_settings": {
     "gecko": {
@@ -17,6 +17,10 @@
   "permissions": [
     "storage"
   ],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
+  },
   "background": {
     "scripts": [
       "background.js"
