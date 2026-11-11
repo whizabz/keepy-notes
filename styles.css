@@ -145,6 +145,12 @@
   top: 50%;
   transform: translateY(-50%);
 }
+/* Titles only: centre the pin button in the 60px row (it is 34px tall). */
+:root.keepy:not(.keepy-previews) .gkA7Yd-sKfxWe .IZ65Hb-n0tgWb > .IZ65Hb-s2gQvd > .IZ65Hb-ma6Yeb-INgbqf,
+:root.keepy:not(.keepy-previews) .gkA7Yd-sKfxWe .IZ65Hb-n0tgWb .IZ65Hb-ma6Yeb-INgbqf {
+  top: 50% !important;
+  transform: translateY(-50%);
+}
 /* Each card is its own stacking layer, so its pin button (z-index 201) can't
    draw over the fixed toolbar while the list scrolls underneath. */
 :root.keepy .gkA7Yd-sKfxWe,
