@@ -126,15 +126,30 @@
   position: relative;
   overflow: hidden;
 }
-:root.keepy:not(.keepy-previews) .gkA7Yd-sKfxWe .IZ65Hb-YPqjbf,
+/* Titled notes: the title fills the row and its line-height centres the text,
+   which keeps the ellipsis working. */
+:root.keepy:not(.keepy-previews) .gkA7Yd-sKfxWe .IZ65Hb-YPqjbf {
+  position: absolute !important;
+  inset: 0 !important;
+  height: 60px !important;
+  min-height: 0 !important;
+  line-height: 60px !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+/* Untitled notes: centre the body text instead. */
 :root.keepy:not(.keepy-previews) .gkA7Yd-sKfxWe .IZ65Hb-n0tgWb:not(:has(.IZ65Hb-r4nke-haAclf .IZ65Hb-YPqjbf:not(:empty))) .IZ65Hb-qJTHM-haAclf {
   position: absolute !important;
   left: 0;
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
+}
+/* Each card is its own stacking layer, so its pin button (z-index 201) can't
+   draw over the fixed toolbar while the list scrolls underneath. */
+:root.keepy .gkA7Yd-sKfxWe,
+:root.keepy .gkA7Yd-sKfxWe .IZ65Hb-n0tgWb {
+  z-index: 1 !important;
 }
 /* With previews on, the title sits tight against the body text below it. */
 :root.keepy.keepy-previews .gkA7Yd-sKfxWe .IZ65Hb-YPqjbf {
